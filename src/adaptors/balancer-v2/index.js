@@ -5,6 +5,7 @@ const sdk = require('@defillama/sdk');
 const utils = require('../utils');
 const gaugeABIEthereum = require('./abis/gauge_ethereum.json');
 const gaugeABIArbitrum = require('./abis/gauge_arbitrum.json');
+const gaugeABIGnosis = require('./abis/gauge_gnosis.json');
 const gaugeABIPolygon = require('./abis/gauge_polygon.json');
 const gaugeControllerEthereum = require('./abis/gauge_controller_ethereum.json');
 const protocolFeesCollectorABI = require('./abis/protocol_fees_collector.json');
@@ -15,10 +16,12 @@ const urlBase = 'https://api.thegraph.com/subgraphs/name/balancer-labs';
 const urlEthereum = `${urlBase}/balancer-v2`;
 const urlPolygon = `${urlBase}/balancer-polygon-v2`;
 const urlArbitrum = `${urlBase}/balancer-arbitrum-v2`;
+const urlGnosis = `${urlBase}/balancer-gnosis-chain-v2`;
 
 const urlGaugesEthereum = `${urlBase}/balancer-gauges`;
 const urlGaugesPolygon = `${urlBase}/balancer-gauges-polygon`;
 const urlGaugesArbitrum = `${urlBase}/balancer-gauges-arbitrum`;
+const urlGaugesGnosis = `${urlBase}/balancer-gauges-gnosis-chain`;
 
 const protocolFeesCollector = '0xce88686553686DA562CE7Cea497CE749DA109f9F';
 const gaugeController = '0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD';
@@ -470,6 +473,16 @@ const main = async () => {
       urlGaugesArbitrum,
       queryGauge,
       gaugeABIArbitrum,
+      swapFeePercentage
+    ),
+    topLvl(
+      'gnosis',
+      urlGnosis,
+      query,
+      queryPrior,
+      urlGaugesGnosis,
+      queryGauge,
+      gaugeABIGnosis,
       swapFeePercentage
     ),
   ]);
